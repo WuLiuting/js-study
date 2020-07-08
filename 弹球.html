@@ -3,8 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>弹球</title>
+    <style>
+        #dv{
+            position: absolute;
+            width: 800px;
+            height: 600px;
+            background: #cccccc;
+            top: 100px;
+            left: 100px;
+
+        }
+    </style>
 </head>
 <body>
+<input type="button" value="弹出球" id="btn">
+<div id="dv">
 
+</div>
+
+<script>
+    var dv = document.getElementById('dv')
+    document.getElementById('btn').onclick = function () {
+        var ball = document.createElement('div')
+        ball.style.cssText = 'position:absolute;border-radius:50%;'
+        var wh = Math.floor(Math.random()*50)+30
+        ball.style.width = wh+'px'
+        ball.style.height = wh+'px'
+        ball.style.background = 'yellowgreen'
+
+        dv.appendChild(ball)
+
+        var top = dv.clientHeight/2 - ball.offsetHeight/2
+        var left = dv.clientWidth/2 - ball.offsetWidth/2
+
+        ball.style.left = left +'px'
+        ball.style.top = top +'px'
+
+        var x = Math.floor(Math.random()*10)+1
+        var y = Math.floor(Math.random()*10)+1
+
+        setInterval(function () {
+            left+=x
+            top+=y
+
+            if (top < 0 || top> (dv.offsetHeight-ball.offsetHeight)){
+            // if (top < dv.offsetTop || top> (  dv.offsetTop+dv.offsetHeight-ball.offsetHeight)){
+                y = -y
+            }
+
+            if (left < 0 || left> ( dv.offsetWidth-ball.offsetWidth)){
+            // if (left < dv.offsetLeft || left> (dv.offsetLeft+ dv.offsetWidth-ball.offsetWidth)){
+                x = -x
+            }
+
+            ball.style.left = left +'px'
+            ball.style.top = top +'px'
+        },30)
+    }
+</script>
 </body>
 </html>
