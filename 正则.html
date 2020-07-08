@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>正则表达式</title>
+</head>
+<body>
+    <script>
+        var text = `
+            http://www.lmon.com
+            https://www.lmon.com
+            ftp://www.lmong.com
+            www.lomg.com
+            http://lmin.com
+            http://www.lmom.com.cn
+            http://wwww.lmon.com?
+            http://www.lmon.com?username=admin
+            http://www.lmon.com?username=admin&pwd=123
+            http://www.lmon.com?username=admin&pwd=123#hello
+            http://www.lmon.com?username=admin&pwd=123#幻灯片
+        `
+        var exp = /(((http|https|ftp):\/\/)?([\w\-]+(\.[\w\-]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?))/ig
+        console.log(text.match(exp))
+    </script>
+</body>
+</html>
