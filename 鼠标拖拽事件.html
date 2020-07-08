@@ -3,8 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <title>鼠标拖拽事件</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #dv{
+            width: 200px;
+            height: 60px;
+            background: rebeccapurple;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
 </head>
 <body>
 
+    <div id="dv"></div>
+    <script>
+        let dv = document.getElementById('dv')
+        let isDown = false
+
+        let x = 0
+        let y = 0
+
+        let l = 0
+        let t = 0
+
+
+        dv.onmousedown = function(e){
+            var event = e || window.event
+
+            x = event.clientX
+            y = event.clientY
+            l = dv.offsetLeft
+            t = dv.offsetTop
+
+            isDown = true
+            dv.style.cursor = 'move'
+
+        }
+        window.onmousemove = function (e) {
+            var event = e || window.event
+
+            if (!isDown){
+                return
+            }
+
+            var nl = event.clientX - (x-l)
+            var nt = event.clientY - (y-t)
+
+
+            dv.style.left = nl +'px'
+            dv.style.top = nt +'px'
+
+        }
+        dv.onmouseup = function (e) {
+            isDown = false
+            dv.style.cursor = 'default'
+        }
+    </script>
 </body>
 </html>

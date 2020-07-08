@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>权限选择菜单</title>
+    <style>
+        select,#cenb{
+            width: 50px;
+            height: 200px;
+            float: left;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <select name="" id="selNum1" multiple="multiple">
+        <option value="1">添加</option>
+        <option value="2">修改</option>
+        <option value="3">删除</option>
+        <option value="4">保存</option>
+        <option value="5">打印</option>
+    </select>
+    <div id="cenb">
+        <input type="button" value=">>" id="one"/>
+        <input type="button" value=">" id="two"/>
+        <input type="button" value="<" id="three"/>
+        <input type="button" value="<<" id="four"/>
+    </div>
+    <select name="" id="selNum2" multiple="multiple"></select>
+
+    <script>
+        var selNum1 = document.getElementById('selNum1')
+        var selNum2 = document.getElementById('selNum2')
+
+        //移动所有项
+        function moveAll(selOne,selTwo){
+            var opts = selOne.getElementsByTagName('option')
+            var len = opts.length
+            // for (let i=0;i<len;i++){
+            //     selTwo.appendChild(opts[0])
+            // }
+            //转换倒叙展示
+            for (let i=len-1;i>=0;i--){
+                selTwo.appendChild(opts[i])
+            }
+            console.log(opts.length)
+        }
+        //移动选中项
+        function moveSelectOptions(selOne,selTwo){
+            var opts = selOne.getElementsByTagName('option')
+            var len = opts.length
+
+            for (let i = len-1;i>=0;i--){
+                if (opts[i].selected == true){
+                    selTwo.appendChild(opts[i])
+                }
+            }
+        }
+
+        document.getElementById('one').onclick = function () {
+            moveAll(selNum1,selNum2)
+
+        }
+        document.getElementById('two').onclick = function () {
+            moveSelectOptions(selNum1,selNum2)
+
+        }
+        document.getElementById('three').onclick = function () {
+            moveSelectOptions(selNum2,selNum1)
+        }
+        document.getElementById('four').onclick = function () {
+            moveAll(selNum2,selNum1)
+        }
+    </script>
+</body>
+</html>
