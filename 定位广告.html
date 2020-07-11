@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>屏幕上定位广告</title>
+    <style>
+        #logo{
+            position: absolute;
+            top: 100px;
+            left: 100px;
+        }
+    </style>
+</head>
+<body>
+<textarea name="" id="" cols="500" rows="500"></textarea>
+<img id="logo" src="./images/one.png" alt="" width="200px">
+
+<script>
+    var logo = document.getElementById('logo')
+    var x = logo.offsetLeft
+    var y = logo.offsetTop
+
+    var timer = null
+    var xs = 5
+    var ys = 5
+
+    var t = 0
+    var l = 0
+
+    function start(){
+        timer = setInterval(function () {
+            x+=xs
+            y+=ys
+            if (x<0 ||  x>(document.documentElement.clientWidth-logo.offsetWidth)){
+                xs = -xs
+            }
+            if (y<0 ||  y>(document.documentElement.clientHeight-logo.offsetHeight)){
+                ys = -ys
+            }
+
+
+            logo.style.left = x + l + 'px'
+            logo.style.top = y + t + 'px'
+
+        },100)
+    }
+
+    logo.onmousemove = function(){
+        clearInterval(timer)
+    }
+    logo.onmouseout = function(){
+        start()
+    }
+    window.onscroll = function () {
+        l = document.documentElement.scrollLeft
+        t = document.documentElement.scrollTop
+        // logo.style.left = x + document.documentElement.scrollLeft + 'px'
+        // logo.style.top = y + document.documentElement.scrollTop + 'px'
+        // console.log(document.documentElement.scrollTop)
+    }
+    window.onload = function () {
+        start()
+    }
+</script>
+</body>
+</html>
