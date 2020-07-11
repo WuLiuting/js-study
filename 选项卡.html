@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tab选项卡</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        a{
+            color: black;
+        }
+        #card{
+            margin: 0 auto;
+            margin-top: 100px;
+            width: 300px;
+            height: 200px;
+        }
+        #title{
+            width: 100%;
+            height: 25px;
+        }
+        #title h3{
+            font-size: 14px;
+            background: #888888;
+            border: 2px solid yellowgreen;
+            width: 80px;
+            height: 25px;
+            text-align: center;
+            line-height: 25px;
+            float: left;
+        }
+        #title .cur{
+            background: #cccccc;
+            border: 2px solid #cccccc;
+        }
+        #content{
+            background: #cccccc;
+            width: 100%;
+            height: 175px;
+        }
+        #content ul{
+            margin-left: 15px;
+            display: none;
+        }
+        #content .active{
+            display: block;
+        }
+        ul li{
+            list-style: none;
+            line-height: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="card">
+        <div id="title">
+            <h3 class="cur"><a href="show.php?cid=1">第一项</a></h3>
+            <h3><a href="show.php?cid=2">第二项</a></h3>
+            <h3><a href="show.php?cid=3">第三项</a></h3>
+        </div>
+
+        <div id="content">
+            <ul class="active">
+                <li>11111111111111</li>
+                <li>11111111111111</li>
+                <li>11111111111111</li>
+                <li>11111111111111</li>
+                <li>11111111111111</li>
+                <li>11111111111111</li>
+                <li>11111111111111</li>
+            </ul>
+
+            <ul>
+                <li>22222222222222</li>
+                <li>22222222222222</li>
+                <li>22222222222222</li>
+                <li>22222222222222</li>
+                <li>22222222222222</li>
+                <li>22222222222222</li>
+                <li>22222222222222</li>
+            </ul>
+            <ul>
+                <li>33333333333333</li>
+                <li>33333333333333</li>
+                <li>33333333333333</li>
+                <li>33333333333333</li>
+                <li>33333333333333</li>
+                <li>33333333333333</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        //获取标签名
+        var titles = document.getElementById('title').getElementsByTagName('h3')
+        var contents = document.getElementById('content').getElementsByTagName('ul')
+
+        var timer = null
+
+        for(let i=0;i<titles.length;i++){
+            titles[i].onmouseover = function () {
+                timer = setTimeout(function () {
+                    active(i)
+                },300)
+                // alert('--------'+i)
+            }
+            titles[i].onmouseout = function () {
+                clearTimeout(timer)
+            }
+        }
+
+        function active(index) {
+            for (let i=0;i<titles.length;i++){
+                if (i === index){
+                    titles[index].className = 'cur'
+                    contents[index].className = 'active'
+                }else{
+                    titles[i].className = ''
+                    contents[i].className = ''
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
