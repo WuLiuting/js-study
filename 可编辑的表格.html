@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>可编辑的表格</title>
+    <style>
+        table{
+            width: 500px;
+            border: 1px solid yellowgreen;
+        }
+        td,th{
+            border: 1px solid yellowgreen;
+        }
+    </style>
+</head>
+<body>
+<script>
+    window.onload = function () {
+        var tds = document.getElementsByTagName('td')
+        //为每一个td添加click实践
+        for (var i=0;i<tds.length;i++){
+            tds[i].onclick = function () {
+
+                for (let i=0;i<this.childNodes.length;i++){
+                    if (this.childNodes[i].nodeName == 'INPUT'){
+                        return false
+                    }
+                }
+
+                var srctext = this.innerText;//取出原内容
+                this.innerHTML = '';//清空表格
+
+                var inputo = document.createElement('input')
+                inputo.type = 'text'
+                inputo.style.cssText = 'border:0px ;font-size:16px;width:100%'
+                inputo.value = srctext
+                this.appendChild(inputo)
+                inputo.focus()
+                inputo.select()
+                console.log(srctext)
+
+                var tdo = this
+                inputo.onkeyup = function (e) {
+                    var event = e || window.event
+                    if (event.keyCode == 13){
+                        tdo.innerHTML = this.value
+                    }else if(event.keyCode == 27){
+                        tdo.innerHTML = tdo.srctext
+                    }
+                }
+            }
+        }
+    }
+</script>
+    <table align="center">
+        <tr>
+            <th width="100px">学科</th>
+            <th>说明</th>
+        </tr>
+        <tr>
+            <td>JAVA</td>
+            <td>this is a test</td>
+        </tr>
+        <tr>
+            <td>JAVASCRIPT</td>
+            <td>this is a test</td>
+        </tr>
+        <tr>
+            <td>VUE</td>
+            <td>this is a test</td>
+        </tr>
+        <tr>
+            <td>REACT</td>
+            <td>this is a test</td>
+        </tr>
+    </table>
+
+</body>
+</html>
