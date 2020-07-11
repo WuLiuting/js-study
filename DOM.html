@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM动画--位置属性和滚动条</title>
+    <style>
+        #dv{
+            background: yellowgreen;
+            height: 300px;
+            overflow: auto;
+            width: 400px;
+            margin: 0 auto;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="dv">
+        <p>99999999999999999999</p>
+        <p>99999999999999999999</p>
+        <p>99999999999999999999</p>
+        <p>99999999999999999999</p>
+        <p>99999999999999999999</p>
+        <p>99999999999999999999</p>
+        <p>99999999999999999999</p>
+        <p>99999999999999999999</p>
+        <p>99999999999999999999</p>
+        <p>99999999999999999999</p>
+        <p>99999999999999999999</p>
+        <p>99999999999999999999</p>
+    </div>
+
+    <script>
+        var dv = document.getElementById('dv')
+
+        console.log(dv.scrollHeight)
+        console.log(dv.scrollTop)
+
+        dv.onscroll = function () {
+            console.log(dv.scrollTop)
+            console.log(dv.scrollLeft)
+        }
+    </script>
+</body>
+</html>

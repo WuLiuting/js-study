@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #demo{
+            width: 500px;
+            height: 100px;
+            background: yellowgreen;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        #one,#two{
+            height: 100px;
+            width: 500px;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="demo">
+        <span id="one">
+            <img src="./images/one.png" alt="" width="100px" height="100px">
+            <img src="./images/two.png" alt="" width="100px" height="100px">
+            <img src="./images/three.png" alt="" width="100px" height="100px">
+            <img src="./images/four.png" alt="" width="100px" height="100px">
+            <img src="./images/five.png" alt="" width="100px" height="100px">
+            <img src="./images/six.jpg" alt="" width="100px" height="100px">
+        </span>
+        <span id="two">
+
+        </span>
+    </div>
+
+    <script>
+        /***
+         * DOM 动画小贴士：
+         *  为元素添加样式
+         *      应该通过 style = "position:relative"创建容器元素
+         *      应该通过 style = "position:absolute"创建动画元素
+         *
+         *   动画设置
+         *      pos++
+         *      elem.style.top = pos + 'px'
+         *      elem.style.left = pos + 'px'
+         * **/
+        var demo = document.getElementById('demo')
+        var one = document.getElementById('one')
+        var two = document.getElementById('two')
+
+        //将one 的内容复制到two中
+        two.innerHTML = one.innerHTML
+
+        function marquee() {
+            if (demo.scrollLeft >= demo.scrollWidth/2){
+                demo.scrollLeft = 0
+            }else{
+                demo.scrollLeft++
+            }
+        }
+
+        var timer = setInterval(marquee,10)
+    </script>
+</body>
+</html>
