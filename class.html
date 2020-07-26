@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>class</title>
+</head>
+<body>
+
+</body>
+<script>
+    //类
+    class Student {
+        constructor(name,number) {
+            this.name = name
+            this.number = number
+        }
+        say(){
+            console.log(`姓名${this.name},学号:${this.number}`)
+        }
+    }
+    //通过类声明对象/实例
+    const wlt = new Student('wlt',121)
+    console.log(wlt.name)
+    console.log(wlt.number)
+    wlt.say()
+</script>
+</html>

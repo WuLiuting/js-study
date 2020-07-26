@@ -1,0 +1,94 @@
+<!DOCTYPE>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width-device-width,initial-scale-1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>Test</title>
+</head>
+
+<body></body>
+<script>
+    let person1 = {
+        name:'z臧三',
+        age:12,
+        say(...args){
+            console.log(`姓名：${this.name},年龄：${this.age},参数:${args}`)
+        }
+    }
+    let person2 = {
+        name:'李四',
+        age:23
+    }
+    //call第一个参数：借用方法的对象
+    // person1.say.call(person2,12312,3232)
+
+    //apply 第一个参数：借用方法的对象，允许传递第二个参数必须是数组
+    // person1.say.apply(person2,[12,32,32,3232,3232,12])
+
+    //bind：第一个参数：借用方法的对象，可以传递多个参数
+    // person1.say.bind(person2,23,4,4)()
+    // person1.say()
+
+
+    // 2、面试题
+    //1）如何将伪数组转换成真数组
+    //伪数组：具备length属性，不能使用真数组的方法
+    //什么是伪数组:querySelectAll,getElementByClassName,getElementsByTagName,arguments
+    let person3 = {
+        name:'name3',
+        age:2,
+        say(){
+            console.log(`姓名：${this.name},年龄：${this.age}`)
+            let args = arguments
+            console.log(args)
+            args = Array.prototype.slice.call(args,0)
+            args.push(8)
+            console.log(args)
+        }
+    }
+    //2）怎么无侵入无序数组求最大值
+    let arr = [12,321,32,21,123]
+    let tes = Math.max.apply(null,arr)
+    let tes1 = Math.max.call(null,...arr)
+    console.log(tes1)
+
+    //3.手动封装
+    Function.prototype.myCall = function (obj,...args) {
+        obj = obj || window
+        const key = Symbol()
+        obj[key] = this
+        obj[key](...args)
+        delete obj[key]
+    }
+
+    //1.一个参数，2.传递两个1）非数组，2）数组
+    Function.prototype.myApply = function(){
+        let obj = arguments[0] || window
+        const args = arguments[1]
+        const key = Symbol()
+        obj[key] = this
+        let result;
+        if (args){
+            if (Array.isArray(args)){
+                result = obj[key](...args)
+            }else if (args.length === 2){
+                result = obj[key](args)
+            }else {
+                console.error('myApply传递多个参数的时候，第二个参数必须是数组')
+            }
+        }else{
+            result = obj[key]()
+        }
+    }
+
+    Function.prototype.myBind = function(obj,...args){
+        let self = this
+        return function () {
+            let newArgs = args.concat(...arguments)
+            self.myCall(obj,newArgs)
+        }
+    }
+    person1.say.myBind(person2,23432,4234)()
+</script>
+</html>

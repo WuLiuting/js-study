@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>原型与原型链</title>
+</head>
+<body>
+
+</body>
+<script>
+   // let xj = {name:'xa'}
+   // console.log(xj)
+   //  console.log(xj.hasOwnProperty('name'))
+   //  //完全数据字典对象
+   //  let hd = Object.create(null,{
+   //      name:{
+   //          value:'zhi'
+   //      }
+   //  })
+   // //这个会报错，因为没有父对象
+   //  console.log(hd.hasOwnProperty('name'))
+
+
+    //原型方法与对象的优先级
+    // let hd = {
+    //     show(){
+    //         console.log('this is show')
+    //     },
+    //     //当父中本来存在此方法，额为添加不生效
+    //     render(){
+    //         console.log('inner render')
+    //     }
+    // }
+    // //向父中添加方法
+    // hd.__proto__.render = function(){
+    //     console.log('new add')
+    // }
+    // hd.render()
+
+
+    //函数有多少个长辈
+    function User() {
+
+    }
+
+</script>
+</html>
